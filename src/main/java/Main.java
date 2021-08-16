@@ -1,11 +1,27 @@
 import AbstractFactory.AbstractCarFactory;
 import AbstractFactory.AbstractFourDoorsFactory;
 import AbstractFactory.AbstractTwoDoorsFactory;
+import Builder.IngredientBuilder;
+import Builder.Ingredients;
+import Builder.Pizza;
 
 public class Main {
 
     public static void main(String[] args) {
         abstractFactoryPattern();
+        builderPattern();
+    }
+
+    private static void builderPattern() {
+        Ingredients ingredients = IngredientBuilder.builder()
+                .ananas(true)
+                .biff(true)
+                .corn(true)
+                .lem(true)
+                .build();
+        Pizza pizza = new Pizza(50, ingredients, "barbecue");
+        // pizza should have ananas, biff, corn and lem values as true, others - as false
+        System.out.println(pizza);
     }
 
     private static void abstractFactoryPattern() {
