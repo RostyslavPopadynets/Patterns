@@ -9,6 +9,7 @@ import FactoryMethod.ToyFactory;
 import FactoryMethod.ToyType;
 import Prototype.SmartPhone;
 import Prototype.SmartphonePrototype;
+import Singleton.DBSingleton;
 
 public class Main {
 
@@ -17,6 +18,18 @@ public class Main {
         builderPattern();
         factoryMethodPattern();
         prototypePattern();
+        singletonPattern();
+    }
+
+    private static void singletonPattern() {
+        // We don't have opportunity to create new object of DBSingleton class
+        // We can only take the same instance of DBSingleton class
+        DBSingleton dbSingletonInstance1 = DBSingleton.getInstance();
+        DBSingleton dbSingletonInstance2 = DBSingleton.getInstance();
+
+        // We should see the same message with the same port
+        dbSingletonInstance1.getConnection();
+        dbSingletonInstance2.getConnection();
     }
 
     private static void prototypePattern() {
