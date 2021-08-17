@@ -1,4 +1,4 @@
-package AbstractFactory;
+package GeneratingPatterns.AbstractFactory;
 
 public class AbstractFourDoorsFactory implements AbstractCarFactory {
     @Override

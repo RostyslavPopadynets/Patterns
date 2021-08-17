@@ -1,4 +1,4 @@
-package FactoryMethod;
+package GeneratingPatterns.FactoryMethod;
 
 public class DogToy implements Toy {
     @Override

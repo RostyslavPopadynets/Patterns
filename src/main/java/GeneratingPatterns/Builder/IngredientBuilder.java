@@ -1,4 +1,4 @@
-package Builder;
+package GeneratingPatterns.Builder;
 
 public class IngredientBuilder {
     private Ingredients ingredients;

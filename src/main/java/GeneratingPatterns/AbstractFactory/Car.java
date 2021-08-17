@@ -1,4 +1,4 @@
-package AbstractFactory;
+package GeneratingPatterns.AbstractFactory;
 
 public abstract class Car {
     private String model;

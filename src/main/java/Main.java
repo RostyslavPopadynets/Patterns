@@ -1,15 +1,20 @@
-import AbstractFactory.AbstractCarFactory;
-import AbstractFactory.AbstractFourDoorsFactory;
-import AbstractFactory.AbstractTwoDoorsFactory;
-import Builder.IngredientBuilder;
-import Builder.Ingredients;
-import Builder.Pizza;
-import FactoryMethod.Toy;
-import FactoryMethod.ToyFactory;
-import FactoryMethod.ToyType;
-import Prototype.SmartPhone;
-import Prototype.SmartphonePrototype;
-import Singleton.DBSingleton;
+import GeneratingPatterns.AbstractFactory.AbstractCarFactory;
+import GeneratingPatterns.AbstractFactory.AbstractFourDoorsFactory;
+import GeneratingPatterns.AbstractFactory.AbstractTwoDoorsFactory;
+import GeneratingPatterns.Builder.IngredientBuilder;
+import GeneratingPatterns.Builder.Ingredients;
+import GeneratingPatterns.Builder.Pizza;
+import GeneratingPatterns.FactoryMethod.Toy;
+import GeneratingPatterns.FactoryMethod.ToyFactory;
+import GeneratingPatterns.FactoryMethod.ToyType;
+import GeneratingPatterns.Prototype.SmartPhone;
+import GeneratingPatterns.Prototype.SmartphonePrototype;
+import GeneratingPatterns.Singleton.DBSingleton;
+import StructuralPatterns.Adapter.ChargeAdapter;
+import StructuralPatterns.Adapter.EuroCharge;
+import StructuralPatterns.Adapter.Laptop;
+import StructuralPatterns.Adapter.USCharge;
+import StructuralPatterns.Adapter.USChargeImpl;
 
 public class Main {
 
@@ -19,6 +24,20 @@ public class Main {
         factoryMethodPattern();
         prototypePattern();
         singletonPattern();
+        adapterPattern();
+    }
+
+    private static void adapterPattern() {
+        System.out.println();
+        // Should charge with 180V
+        USCharge usCharge = new USChargeImpl();
+        Laptop.chargeLaptop(usCharge);
+
+        // We can't use euroCharge in chargeLaptop method
+        // We need to adapt it
+        // Should charge with 220V
+        EuroCharge euroCharge = new EuroCharge();
+        Laptop.chargeLaptop(new ChargeAdapter(euroCharge));
     }
 
     private static void singletonPattern() {

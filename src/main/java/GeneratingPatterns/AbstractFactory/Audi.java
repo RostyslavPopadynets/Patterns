@@ -1,4 +1,4 @@
-package AbstractFactory;
+package GeneratingPatterns.AbstractFactory;
 
 public class Audi extends Car {
     public Audi(String model, int doorsNumber) {

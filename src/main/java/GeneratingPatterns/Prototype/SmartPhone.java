@@ -1,4 +1,4 @@
-package Prototype;
+package GeneratingPatterns.Prototype;
 
 public class SmartPhone implements Cloneable {
     private String name;

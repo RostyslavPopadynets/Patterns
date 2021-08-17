@@ -1,4 +1,4 @@
-package Builder;
+package GeneratingPatterns.Builder;
 
 public class Pizza {
     private int size;

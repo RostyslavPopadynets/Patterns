@@ -1,4 +1,4 @@
-package FactoryMethod;
+package GeneratingPatterns.FactoryMethod;
 
 public interface Toy {
     String sayHello();

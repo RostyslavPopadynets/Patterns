@@ -1,21 +1,21 @@
-package Singleton;
+package GeneratingPatterns.Singleton;
 
 import java.util.Random;
 
 public class DBSingleton {
 
-    private static DBSingleton _dbSingleton = null;
+    private static DBSingleton dbSingleton = null;
     private int port;
 
     private DBSingleton() {
     }
 
     public static DBSingleton getInstance() {
-        if (_dbSingleton == null) {
-            _dbSingleton = new DBSingleton();
-            _dbSingleton.port = new Random().nextInt(9000) + 1000;
+        if (dbSingleton == null) {
+            dbSingleton = new DBSingleton();
+            dbSingleton.port = new Random().nextInt(9000) + 1000;
         }
-        return _dbSingleton;
+        return dbSingleton;
     }
 
     public int getPort() {
