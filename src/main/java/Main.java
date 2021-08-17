@@ -4,12 +4,31 @@ import AbstractFactory.AbstractTwoDoorsFactory;
 import Builder.IngredientBuilder;
 import Builder.Ingredients;
 import Builder.Pizza;
+import FactoryMethod.Toy;
+import FactoryMethod.ToyFactory;
+import FactoryMethod.ToyType;
 
 public class Main {
 
     public static void main(String[] args) {
         abstractFactoryPattern();
         builderPattern();
+        factoryMethodPattern();
+    }
+
+    private static void factoryMethodPattern() {
+        Toy toyCat = ToyFactory.getToy(ToyType.CAT);
+        Toy toyDog = ToyFactory.getToy(ToyType.DOG);
+
+        // Should say hello and goodbye from CatToy class
+        System.out.println("CAT:");
+        System.out.println(toyCat.sayHello());
+        System.out.println(toyCat.sayGoodbye());
+
+        // Should say hello and goodbye from DogToy class
+        System.out.println("DOG:");
+        System.out.println(toyDog.sayHello());
+        System.out.println(toyDog.sayGoodbye());
     }
 
     private static void builderPattern() {
@@ -20,12 +39,14 @@ public class Main {
                 .lem(true)
                 .build();
         Pizza pizza = new Pizza(50, ingredients, "barbecue");
+
         // pizza should have ananas, biff, corn and lem values as true, others - as false
         System.out.println(pizza);
     }
 
     private static void abstractFactoryPattern() {
         System.out.println("AbstractCarFactory\n");
+
         AbstractCarFactory twoDoorsFactory = new AbstractTwoDoorsFactory();
         AbstractCarFactory fourDoorsFactory = new AbstractFourDoorsFactory();
 
