@@ -7,6 +7,8 @@ import Builder.Pizza;
 import FactoryMethod.Toy;
 import FactoryMethod.ToyFactory;
 import FactoryMethod.ToyType;
+import Prototype.SmartPhone;
+import Prototype.SmartphonePrototype;
 
 public class Main {
 
@@ -14,6 +16,24 @@ public class Main {
         abstractFactoryPattern();
         builderPattern();
         factoryMethodPattern();
+        prototypePattern();
+    }
+
+    private static void prototypePattern() {
+        SmartPhone existingSmartPhone = SmartphonePrototype.getExistingSmartPhone();
+        SmartPhone smartPhoneCopied = existingSmartPhone.clone();
+        smartPhoneCopied.setName("Iphone 12 Pro");
+        smartPhoneCopied.setMemory("512GB");
+
+        // Should return Iphone 11 Pro with 256GB memory and ISO operation system
+        // Changed values in copied object, should not have influence on this one
+        System.out.println("\nExisting smartphone:");
+        System.out.println(existingSmartPhone);
+
+        // Should return Iphone 12 Pro with 512GB memory
+        // Operation system should be IOS (this value copied from existing object)
+        System.out.println("Copied smartphone:");
+        System.out.println(smartPhoneCopied);
     }
 
     private static void factoryMethodPattern() {
