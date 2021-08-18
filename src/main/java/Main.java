@@ -26,6 +26,7 @@ import StructuralPatterns.Composite.Circle;
 import StructuralPatterns.Decorator.AmbulanceCar;
 import StructuralPatterns.Decorator.Car;
 import StructuralPatterns.Decorator.MercedesCar;
+import StructuralPatterns.Facade.HotelFacade;
 
 public class Main {
 
@@ -39,6 +40,25 @@ public class Main {
         bridgePattern();
         compositePattern();
         decoratorPattern();
+        facadePattern();
+    }
+
+    /**
+     * Фасад надає єдину «точку доступу» до підсистеми, тим самим
+     * спрощуючи її використання та розуміння.
+     * Цей дизайн-патерн можна розглядати як наступний рівень такого важливого
+     * принципу як інкапсуляція. Просто на цьому рівні ми інкапсулюємо цілу
+     * підсистему.
+     */
+    private static void facadePattern() {
+        System.out.println();
+        HotelFacade hotelFacade = new HotelFacade();
+
+        // HotelFacade include three classes which are encapsulate
+        // We have access only for this methods
+        hotelFacade.getAllInclusiveRestForOnePerson();
+        hotelFacade.getAllInclusiveRestPrice(3);
+        hotelFacade.getTheCheaperRestForOnePerson();
     }
 
     /**
