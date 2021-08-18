@@ -23,6 +23,9 @@ import StructuralPatterns.Composite.Component;
 import StructuralPatterns.Composite.GroupComponent;
 import StructuralPatterns.Composite.Rectangle;
 import StructuralPatterns.Composite.Circle;
+import StructuralPatterns.Decorator.AmbulanceCar;
+import StructuralPatterns.Decorator.Car;
+import StructuralPatterns.Decorator.MercedesCar;
 
 public class Main {
 
@@ -35,6 +38,18 @@ public class Main {
         adapterPattern();
         bridgePattern();
         compositePattern();
+        decoratorPattern();
+    }
+
+    /**
+     * Декоратор використовується для надання деякої додаткової
+     * функціональності нашим об'єктам.
+     */
+    private static void decoratorPattern() {
+        System.out.println();
+        // We can add additional functionality in DecoratorCar class
+        Car doctorsCar = new AmbulanceCar(new MercedesCar());
+        doctorsCar.drive();
     }
 
     /**
@@ -42,8 +57,8 @@ public class Main {
      * працювати однаково із батьками та синами у дереві.
      */
     private static void compositePattern() {
-        // We can create group of component and add components to them
         System.out.println();
+        // We can create group of component and add components to them
         Component groupOfAllComponents = new GroupComponent();
         Component rect = new Rectangle();
         groupOfAllComponents.add(rect);
