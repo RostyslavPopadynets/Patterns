@@ -19,6 +19,10 @@ import StructuralPatterns.Bridge.BrickWallCreator;
 import StructuralPatterns.Bridge.BuildingCompany;
 import StructuralPatterns.Bridge.ConcreteSlabWallCreator;
 import StructuralPatterns.Bridge.LeoniBuldingCompany;
+import StructuralPatterns.Composite.Component;
+import StructuralPatterns.Composite.GroupComponent;
+import StructuralPatterns.Composite.Rectangle;
+import StructuralPatterns.Composite.Circle;
 
 public class Main {
 
@@ -30,6 +34,25 @@ public class Main {
         singletonPattern();
         adapterPattern();
         bridgePattern();
+        compositePattern();
+    }
+
+    /**
+     * Компонувальник дозволяє нам зберігати деревовидну структуру і
+     * працювати однаково із батьками та синами у дереві.
+     */
+    private static void compositePattern() {
+        // We can create group of component and add components to them
+        System.out.println();
+        Component groupOfAllComponents = new GroupComponent();
+        Component rect = new Rectangle();
+        groupOfAllComponents.add(rect);
+
+        // Also we can add new group of component as new component
+        Component groupOfComponents = new GroupComponent(new Rectangle(), new Circle(), new Circle());
+        groupOfAllComponents.add(groupOfComponents);
+        // We should see in a raw : rectangle, rectangle, circle, circle
+        groupOfAllComponents.draw();
     }
 
     /**
