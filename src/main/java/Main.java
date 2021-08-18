@@ -15,6 +15,10 @@ import StructuralPatterns.Adapter.EuroCharge;
 import StructuralPatterns.Adapter.Laptop;
 import StructuralPatterns.Adapter.USCharge;
 import StructuralPatterns.Adapter.USChargeImpl;
+import StructuralPatterns.Bridge.BrickWallCreator;
+import StructuralPatterns.Bridge.BuildingCompany;
+import StructuralPatterns.Bridge.ConcreteSlabWallCreator;
+import StructuralPatterns.Bridge.LeoniBuldingCompany;
 
 public class Main {
 
@@ -25,8 +29,36 @@ public class Main {
         prototypePattern();
         singletonPattern();
         adapterPattern();
+        bridgePattern();
     }
 
+    /**
+     * Міст дозволяє розділити імплементацію від її абстракції, таким чином
+     * реалізація може бути змінена окремо від абстракції, оскільки вона не
+     * наслідується від неї напряму
+     */
+    private static void bridgePattern() {
+        System.out.println();
+        BuildingCompany buildingCompanyByBrick = new LeoniBuldingCompany(new BrickWallCreator());
+        BuildingCompany buildingCompanyByConcrete = new LeoniBuldingCompany(new ConcreteSlabWallCreator());
+
+        // Should build house by bricks
+        buildingCompanyByBrick.buildFoundation();
+        buildingCompanyByBrick.buildRoom();
+        buildingCompanyByBrick.buildRoof();
+
+        System.out.println();
+        // Should build house by concrete
+        buildingCompanyByConcrete.buildFoundation();
+        buildingCompanyByConcrete.buildRoom();
+        buildingCompanyByConcrete.buildRoof();
+    }
+
+    /**
+     * Адаптер надає можливість користуватися об’єктом, який не є
+     * прийнятним у нашій системі і який не можна змінити. Ми адаптуємо
+     * його функціональність через інший, відомий нашій системі, інтерфейс.
+     */
     private static void adapterPattern() {
         System.out.println();
         // Should charge with 180V
@@ -40,6 +72,10 @@ public class Main {
         Laptop.chargeLaptop(new ChargeAdapter(euroCharge));
     }
 
+    /**
+     * Одинак забезпечує існування єдиного екземпляру класу та єдиного
+     * доступу до нього
+     */
     private static void singletonPattern() {
         // We don't have opportunity to create new object of DBSingleton class
         // We can only take the same instance of DBSingleton class
@@ -51,6 +87,14 @@ public class Main {
         dbSingletonInstance2.getConnection();
     }
 
+    /**
+     * Прототип дозволяє нам створювати копії об’єктів, що уже визначені на
+     * стадії дизайну (наприклад, список можливих типів зустрічей) або ж
+     * визначаються під час виконання програми («п’ятнична вечірка»), таким
+     * чином, відпадає необхідність заповняти всі елементи об’єкту від «А» до
+     * «Я». Вже створені або визначені екземпляри об’єкту називаються
+     * прототипічними екземплярами (prototypical instances).
+     */
     private static void prototypePattern() {
         SmartPhone existingSmartPhone = SmartphonePrototype.getExistingSmartPhone();
         SmartPhone smartPhoneCopied = existingSmartPhone.clone();
@@ -68,6 +112,11 @@ public class Main {
         System.out.println(smartPhoneCopied);
     }
 
+    /**
+     * Фабричний Метод вирішує, яку реалізацію інстанціювати. Вирішують
+     * або нащадки фабричного методу, або він сам, приймаючи якийсь
+     * параметер.
+     */
     private static void factoryMethodPattern() {
         Toy toyCat = ToyFactory.getToy(ToyType.CAT);
         Toy toyDog = ToyFactory.getToy(ToyType.DOG);
@@ -83,6 +132,10 @@ public class Main {
         System.out.println(toyDog.sayGoodbye());
     }
 
+    /**
+     * Будівельник вимальовує стандартний процес створення складного
+     * об’єкта, розділяючи логіку будування об’єкта від його представлення.
+     */
     private static void builderPattern() {
         Ingredients ingredients = IngredientBuilder.builder()
                 .ananas(true)
@@ -96,6 +149,10 @@ public class Main {
         System.out.println(pizza);
     }
 
+    /**
+     * Абстрактна фабрика надає простий інтерфейс для створення об’єктів,
+     * які належать до того чи іншого сімейства.
+     */
     private static void abstractFactoryPattern() {
         System.out.println("AbstractCarFactory\n");
 
