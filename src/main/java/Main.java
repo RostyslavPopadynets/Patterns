@@ -27,6 +27,10 @@ import StructuralPatterns.Decorator.AmbulanceCar;
 import StructuralPatterns.Decorator.Car;
 import StructuralPatterns.Decorator.MercedesCar;
 import StructuralPatterns.Facade.HotelFacade;
+import StructuralPatterns.Flyweight.Parser;
+import StructuralPatterns.Flyweight.Unit;
+
+import java.util.List;
 
 public class Main {
 
@@ -41,6 +45,22 @@ public class Main {
         compositePattern();
         decoratorPattern();
         facadePattern();
+        flyweightPattern();
+    }
+
+    /**
+     * Легковаговик забезпечує підтримку великої кількості об’єктів шляхом
+     * виокремлення спільної інформації для збереження в одному
+     * екземплярі.
+     */
+    private static void flyweightPattern() {
+        System.out.println();
+        Parser parser = new Parser();
+        // We have many Unit objects and every object has image
+        // We used flyweight pattern for creating picture only once for different type of Unit
+        // and set it to each object with appropriate type
+        List<Unit> unitList = parser.getAllUnits();
+        System.out.println(unitList.size());
     }
 
     /**
@@ -93,7 +113,7 @@ public class Main {
     /**
      * Міст дозволяє розділити імплементацію від її абстракції, таким чином
      * реалізація може бути змінена окремо від абстракції, оскільки вона не
-     * наслідується від неї напряму
+     * наслідується від неї напряму.
      */
     private static void bridgePattern() {
         System.out.println();
@@ -132,7 +152,7 @@ public class Main {
 
     /**
      * Одинак забезпечує існування єдиного екземпляру класу та єдиного
-     * доступу до нього
+     * доступу до нього.
      */
     private static void singletonPattern() {
         // We don't have opportunity to create new object of DBSingleton class
