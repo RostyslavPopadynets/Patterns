@@ -1,3 +1,11 @@
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
+import BehaviourPatterns.ChainOfResponsibility.BestFriend;
+import BehaviourPatterns.ChainOfResponsibility.Food;
+import BehaviourPatterns.ChainOfResponsibility.GirlFriend;
+import BehaviourPatterns.ChainOfResponsibility.Me;
 import GeneratingPatterns.AbstractFactory.AbstractCarFactory;
 import GeneratingPatterns.AbstractFactory.AbstractFourDoorsFactory;
 import GeneratingPatterns.AbstractFactory.AbstractTwoDoorsFactory;
@@ -19,10 +27,10 @@ import StructuralPatterns.Bridge.BrickWallCreator;
 import StructuralPatterns.Bridge.BuildingCompany;
 import StructuralPatterns.Bridge.ConcreteSlabWallCreator;
 import StructuralPatterns.Bridge.LeoniBuldingCompany;
+import StructuralPatterns.Composite.Circle;
 import StructuralPatterns.Composite.Component;
 import StructuralPatterns.Composite.GroupComponent;
 import StructuralPatterns.Composite.Rectangle;
-import StructuralPatterns.Composite.Circle;
 import StructuralPatterns.Decorator.AmbulanceCar;
 import StructuralPatterns.Decorator.Car;
 import StructuralPatterns.Decorator.MercedesCar;
@@ -32,16 +40,64 @@ import StructuralPatterns.Flyweight.Unit;
 import StructuralPatterns.Proxy.RobotBombDefuser;
 import StructuralPatterns.Proxy.RobotBombDefuserProxy;
 
-import java.util.List;
-
 public class Main {
 
     public static void main(String[] args) {
+        runGeneratingPatterns();
+        runStructuralPatterns();
+        runBehaviourPatterns();
+    }
+
+    /**
+     * Основним завданням породжуючих патернів є спростити створення об’єктів.
+     * Інколи ви працюєте із певним набором об’єктів через групу інтерфейсів. А
+     * тоді хочете створювати об’єкти тільки із іншого набору, щоб пристосувати ваш
+     * код до інших умов. Звичайно, група інтерфейсів, через які ви оперуєте,
+     * залишається та ж сама. Спростити створення відповідного набору допоможе
+     * Абстрактна Фабрика.
+     * А інколи структура деякого об’єкта дуже складна і залежить від багатьох
+     * чинників. Щоб спростити створення такого об’єкту зазвичай використовують
+     * Будівельника.
+     * А щоб зручно вибрати одну реалізацію та інстанціювати її, відштовхуючись
+     * від простої умови, можна використати Фабричний Метод.
+     * Нерідко постає завдання отримати копію уже існуючого об’єкта, або
+     * отримати можливість швидко генерувати багато подібних екземплярів. У
+     * такому випадку Прототип якраз згодиться.
+     * Вибагливе множення об’єктів — не єдине завдання, яке вам слід буде
+     * виконувати у роботі: вам часто потрібно буде робити все точно навпаки – мати
+     * один-єдиний екземпляр об’єкта і, ні за яких обставин, не допустити створення
+     * або звертання до ще одного екземпляру. Функціональність єдиного екземпляра
+     * забезпечуються Одинаком.
+     */
+    private static void runGeneratingPatterns() {
         abstractFactoryPattern();
         builderPattern();
         factoryMethodPattern();
         prototypePattern();
         singletonPattern();
+    }
+
+    /**
+     * Основним завданням структурних патернів є формування найбільш
+     * підходящої структури та взаємодії між класами для виконання певних завдань.
+     * Якщо потрібно, щоб один об’єкт міг бути зрозумілим під іншим
+     * інтерфейсом, використовується Адаптер.
+     * Якщо ви хочете розділити абстракцію та імплементацію так, що на одному
+     * боці ви матимете абстракцію, а на іншому декілька реалізацій, причому, всі
+     * доступні до модифікацій, то слід задуматися над поєднанням таких незалежних
+     * абстракції та реалізації за допомогою патерну Міст.
+     * Якщо елемент містить собі подібні елементи, а вони, в свою чергу, також
+     * можуть містити елементи, то таку структуру найлегше реалізувати за
+     * допомогою Компонувальника.
+     * Для швидкої та динамічної можливості розширення існуючої
+     * функціональності, без зміни її носія, можна скористатися Декоратором.
+     * Якщо ваша система використовує багато об’єктів, що мають спільні дані, то
+     * такі дані можна винести та зробити загальнодоступними для економії пам’яті за
+     * допомогою патерну Легковаговик.
+     * Якщо відсутня можливість працювати із об’єктом напряму, використайте
+     * Проксі, що дозволить донести ваші команди до пункту призначення.
+     */
+    private static void runStructuralPatterns() {
         adapterPattern();
         bridgePattern();
         compositePattern();
@@ -49,6 +105,70 @@ public class Main {
         facadePattern();
         flyweightPattern();
         proxyPattern();
+    }
+
+    /**
+     * Патерни поведінки акцентують свою увагу на поведінці.
+     * Вони або інкапсулюють поведінку, або дозволяють її розподілити.
+     * Щоб забезпечити почергову передачу роботи від одного класу до іншого і
+     * так далі, аж до поки робота не буде виконана, використовують Ланцюжок
+     * Відповідальностей.
+     * Інколи краще запакувати інформацію про дії, які слід виконати, в один
+     * об’єкт Команди і переслати на опрацювання, або ж просто виконати в
+     * потрібному місці.
+     * Багато явищ можна описати за допомогою якоїсь спеціальної мови,
+     * наприклад, погодні умови можуть бути записані значками, зрозумілими тільки
+     * метеорологам, але, якщо вам подана граматика цієї мови і пояснення значків,
+     * цілком можливо, що ви зможете Інтерпретувати метеорологічне речення і
+     * зрозуміти його суть.
+     * Колекції об’єктів можуть бути «хитрими» і містити багато підколекцій та
+     * поокремих об’єктів. Щоб спростити життя користувачу такої колекції та щоб не
+     * викривати логіки колекції, придумали Ітератор, який допомагає легко і
+     * грамотно обійти усі об’єкти всередині.
+     * Спрощення коодинації роботи між деякою кількістю об’єктів може бути
+     * досягнуте виділенням посередника або медіатора. Медіатором може бути ваш
+     * бригадир на будівництві або ваш менеджер.
+     * Можливість повернутися до попереднього стану системи має велике
+     * значення. Така функціональність може бути досягнута Хранителем.
+     * Зверху завжди видніше, що коїться знизу. Спостерігач допоможе
+     * централізувати огляд роботи декількох класів та генерувати відповідні події.
+     * Стан системи та умови переходу між ними можуть бути винесені в окремі
+     * класи для легшого контролю над цією системою. Все це досягається за
+     * допомогою дизайн-патерну Стан.
+     * Піти направо чи наліво, а чи взагалі кудись йти? Відповідь на це питання
+     * може залежати від певних параметрів і є нічим іншим як певною Стратегією.
+     * Втомились від одноманітної роботи, яка завжди шаблонна, окрім деталей,
+     * які час від часу міняються? Віддайте цю робому Шаблонному Методу.
+     * Коли потрібно виконати деякі дії над об’єктом, причому вони кожного разу
+     * різні, такі дії можуть бути винесені в окремі класи-відвідувачі. Опісля ваш
+     * об’єкт може приймати Відвідувачів для виконання конкретних дій.
+     */
+    private static void runBehaviourPatterns() {
+        сhainOfResponsibilityPattern();
+    }
+
+    /**
+     * Ланцюжок Відповідальностей забезпечує обробку об’єкта шляхом
+     * передачі його по ланцюжку доти, доки не буде здійснена обробка
+     * якоюсь із ланок.
+     */
+    private static void сhainOfResponsibilityPattern() {
+        // The food will go ahead to the next class - if it's not needed for this one
+        System.out.println();
+        Food cappuccinoWithSugar = new Food("Cappuccino", Arrays.asList("Coffee", "Milk", "Sugar"));
+        Food cappuccinoWithoutSugar = new Food("Cappuccino", Arrays.asList("Coffee", "Milk"));
+        Food soupWithMeat = new Food("Soup with meat", Arrays.asList("Meat", "Water", "Potato"));
+        Food soupWithoutMeat = new Food("Soup with potato", Arrays.asList("Water", "Potato"));
+        Food meat = new Food("Meat", Collections.singletonList("Meat"));
+        GirlFriend girlFriend = new GirlFriend(null);
+        Me me = new Me(girlFriend);
+        BestFriend bestFriend = new BestFriend(me);
+        bestFriend.handleFood(meat);
+        bestFriend.handleFood(cappuccinoWithSugar);
+        bestFriend.handleFood(cappuccinoWithoutSugar);
+        bestFriend.handleFood(soupWithMeat);
+        bestFriend.handleFood(soupWithoutMeat);
+        bestFriend.handleFood(cappuccinoWithSugar);
     }
 
     /**
