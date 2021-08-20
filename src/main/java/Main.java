@@ -29,6 +29,8 @@ import StructuralPatterns.Decorator.MercedesCar;
 import StructuralPatterns.Facade.HotelFacade;
 import StructuralPatterns.Flyweight.Parser;
 import StructuralPatterns.Flyweight.Unit;
+import StructuralPatterns.Proxy.RobotBombDefuser;
+import StructuralPatterns.Proxy.RobotBombDefuserProxy;
 
 import java.util.List;
 
@@ -46,6 +48,39 @@ public class Main {
         decoratorPattern();
         facadePattern();
         flyweightPattern();
+        proxyPattern();
+    }
+
+    /**
+     * Проксі підміняє реальний об'єкт та надсилає запити до нього тоді,
+     * коли це потрібно. Проксі також може ініціалізувати реальний об'єкт,
+     * якщо він до того не існував.
+     */
+    private static void proxyPattern() {
+        // Create proxy object, which just expands RobotBombDefuser class
+        System.out.println();
+        RobotBombDefuserProxy proxy = new RobotBombDefuserProxy(41);
+        proxy.walkStraightForward(100);
+        if (!proxy.isLostConnection()) {
+            proxy.turnRight();
+        }
+        if (!proxy.isLostConnection()) {
+            proxy.walkStraightForward(5);
+        }
+        if (!proxy.isLostConnection()) {
+            proxy.defuseBomb();
+        }
+        System.out.println();
+        // If connection to proxy is lost, we initialize object from class RobotBombDefuser
+        if (proxy.isLostConnection()) {
+            System.out.println("Exception has been caught with message: \"No connection with remote bomb " +
+                    "diffuser robot\".\nDecided to have human operate robot there.");
+            RobotBombDefuser humanOperatingRobotDirectly = new RobotBombDefuser();
+            humanOperatingRobotDirectly.walkStraightForward(100);
+            humanOperatingRobotDirectly.turnRight();
+            humanOperatingRobotDirectly.walkStraightForward(5);
+            humanOperatingRobotDirectly.defuseBomb();
+        }
     }
 
     /**
