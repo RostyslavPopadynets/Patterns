@@ -10,18 +10,10 @@ public class Requirement {
     }
 
     public String getRequirementName() {
-        return requirementName;
-    }
-
-    public void setRequirementName(String requirementName) {
-        this.requirementName = requirementName;
+        return this.requirementName;
     }
 
     public String getRequirementDescription() {
-        return requirementDescription;
-    }
-
-    public void setRequirementDescription(String requirementDescription) {
-        this.requirementDescription = requirementDescription;
+        return this.requirementDescription;
     }
 }

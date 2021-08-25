@@ -15,18 +15,10 @@ public class HeroDeveloper {
     }
 
     public String getDeveloperName() {
-        return developerName;
-    }
-
-    public void setDeveloperName(String developerName) {
-        this.developerName = developerName;
+        return this.developerName;
     }
 
     public String getDeveloperSkills() {
-        return developerSkills;
-    }
-
-    public void setDeveloperSkills(String developerSkills) {
-        this.developerSkills = developerSkills;
+        return this.developerSkills;
     }
 }

@@ -10,20 +10,6 @@ public class Customer {
     public Customer() {
         commands = new ArrayList<>();
     }
-    
-    public void AddCommand(Command command) {
-        commands.add(command);
-    }
-    
-    public void SignContractWithBoss() {
-        for (Command command : commands) {
-            command.execute();
-        }
-    }
-
-    public List<Command> getCommands() {
-        return commands;
-    }
 
     public void addCommand(Command command) {
         this.commands.add(command);

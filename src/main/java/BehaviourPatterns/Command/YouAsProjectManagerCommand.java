@@ -18,18 +18,11 @@ public class YouAsProjectManagerCommand implements Command {
     }
 
     public Team getTeam() {
-        return team;
+        return this.team;
     }
 
-    public void setTeam(Team team) {
-        this.team = team;
-    }
 
     public List<Requirement> getRequirements() {
-        return requirements;
-    }
-
-    public void setRequirements(List<Requirement> requirements) {
-        this.requirements = requirements;
+        return this.requirements;
     }
 }
