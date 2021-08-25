@@ -6,6 +6,13 @@ import BehaviourPatterns.ChainOfResponsibility.BestFriend;
 import BehaviourPatterns.ChainOfResponsibility.Food;
 import BehaviourPatterns.ChainOfResponsibility.GirlFriend;
 import BehaviourPatterns.ChainOfResponsibility.Me;
+import BehaviourPatterns.Command.Command;
+import BehaviourPatterns.Command.Customer;
+import BehaviourPatterns.Command.HeroDeveloper;
+import BehaviourPatterns.Command.HeroDeveloperCommand;
+import BehaviourPatterns.Command.Requirement;
+import BehaviourPatterns.Command.Team;
+import BehaviourPatterns.Command.YouAsProjectManagerCommand;
 import GeneratingPatterns.AbstractFactory.AbstractCarFactory;
 import GeneratingPatterns.AbstractFactory.AbstractFourDoorsFactory;
 import GeneratingPatterns.AbstractFactory.AbstractTwoDoorsFactory;
@@ -145,6 +152,38 @@ public class Main {
      */
     private static void runBehaviourPatterns() {
         сhainOfResponsibilityPattern();
+        commandPattern();
+    }
+
+    /**
+     * Команда дозволяє інкапсулювати всю інформацію, необхідну для
+     * виконання певних операцій, які можуть бути виконані пізніше,
+     * використавши об’єкт команди. Команда інкапсулює
+     * інформацію і надає назовні один метод для виконання дій.
+     */
+    private static void commandPattern() {
+        System.out.println();
+        // Замовник
+        Customer customer = new Customer();
+        // Команда Undefined
+        Team team = new Team("Undefined", 5);
+        // Список вимог, що треба буде передати команді Undefined
+        List<Requirement> requirements = Arrays.asList(
+                new Requirement("Login", "Create login opportunity"),
+                new Requirement("Contact", "Create contact page"));
+        // Ви повинні бути готові бути викликаними замовником
+        Command commandX = new YouAsProjectManagerCommand(team, requirements);
+        // Передача вас у «найми» замовнику 
+        customer.addCommand(commandX);
+        // Супер-програміст компанії
+        HeroDeveloper heroDeveloper = new HeroDeveloper("Rostyk","Java,Angular");
+        // Бос вирішив віддати йому проект BillService
+        Command commandA = new HeroDeveloperCommand(heroDeveloper, "BillService");
+        customer.addCommand(commandA);
+        // Як тільки замовник підписує контракт із вашим босом,
+        // ваша команда і супер-програміст готові виконати все, що треба
+        // згідно вихідного коду контракту
+        customer.signContractWithBoss();
     }
 
     /**
