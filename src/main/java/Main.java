@@ -18,6 +18,10 @@ import BehaviourPatterns.Iterator.Facebook;
 import BehaviourPatterns.Iterator.Profile;
 import BehaviourPatterns.Iterator.SocialNetwork;
 import BehaviourPatterns.Iterator.SocialSpammer;
+import BehaviourPatterns.Mediator.Button;
+import BehaviourPatterns.Mediator.Fan;
+import BehaviourPatterns.Mediator.Mediator;
+import BehaviourPatterns.Mediator.PowerSupplier;
 import GeneratingPatterns.AbstractFactory.AbstractCarFactory;
 import GeneratingPatterns.AbstractFactory.AbstractFourDoorsFactory;
 import GeneratingPatterns.AbstractFactory.AbstractTwoDoorsFactory;
@@ -159,6 +163,25 @@ public class Main {
         сhainOfResponsibilityPattern();
         commandPattern();
         iteratorPattern();
+        mediatorPattern();
+    }
+
+    /**
+     * Медіатор централізує взаємодію між компонентами, таким чином
+     * послаблюючи їхню зв’язність.
+     * Патерн Посередник змушує об’єкти спілкуватися через окремий об’єкт-посередник,
+     * який знає, кому потрібно перенаправити той або інший запит.
+     * Завдяки цьому компоненти системи залежатимуть тільки від посередника,
+     * а не від десятків інших компонентів.
+     */
+    private static void mediatorPattern() {
+        System.out.println();
+        // Ми використовуємло тільки метод press, клас Button має в собі медіатор,
+        // який організовує взаємодію між іншими елементами
+        Button button = new Button(new Mediator(new Fan(new PowerSupplier())));
+        for (int i = 0; i < 5; i++) {
+            button.press();
+        }
     }
 
     /**

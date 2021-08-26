@@ -6,13 +6,12 @@ import java.util.List;
 import java.util.Map;
 
 public class Profile {
-    private String name;
+
     private String email;
     private Map<String, List<String>> contacts = new HashMap<>();
 
-    public Profile(String email, String name, String... contacts) {
+    public Profile(String email, String... contacts) {
         this.email = email;
-        this.name = name;
 
         // Parse contact list from a set of "friend:email@gmail.com" pairs.
         for (String contact : contacts) {
@@ -34,10 +33,6 @@ public class Profile {
 
     public String getEmail() {
         return email;
-    }
-
-    public String getName() {
-        return name;
     }
 
     public List<String> getContacts(String contactType) {
