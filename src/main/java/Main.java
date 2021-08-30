@@ -23,6 +23,9 @@ import BehaviourPatterns.Mediator.Fan;
 import BehaviourPatterns.Mediator.Mediator;
 import BehaviourPatterns.Mediator.PowerSupplier;
 import BehaviourPatterns.Memento.Caretaker;
+import BehaviourPatterns.Observer.BoxFight;
+import BehaviourPatterns.Observer.ConservativePlayer;
+import BehaviourPatterns.Observer.RiskyPlayer;
 import GeneratingPatterns.AbstractFactory.AbstractCarFactory;
 import GeneratingPatterns.AbstractFactory.AbstractFourDoorsFactory;
 import GeneratingPatterns.AbstractFactory.AbstractTwoDoorsFactory;
@@ -166,6 +169,24 @@ public class Main {
         iteratorPattern();
         mediatorPattern();
         mementoPattern();
+        observerPattern();
+    }
+
+    /**
+     * Спостерігач дозволяє автоматично реагувати багатьом об’єктам на
+     * зміну стану певного іншого об’єкта.
+     */
+    private static void observerPattern() {
+        System.out.println();
+        BoxFight boxFight = new BoxFight();
+        RiskyPlayer riskyPlayer = new RiskyPlayer();
+        ConservativePlayer conservativePlayer = new ConservativePlayer();
+        boxFight.attachObserver(riskyPlayer);
+        boxFight.attachObserver(conservativePlayer);
+        boxFight.nextRound();
+        boxFight.nextRound();
+        boxFight.nextRound();
+        boxFight.nextRound();
     }
 
     /**
