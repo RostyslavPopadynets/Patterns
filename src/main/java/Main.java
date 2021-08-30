@@ -22,6 +22,7 @@ import BehaviourPatterns.Mediator.Button;
 import BehaviourPatterns.Mediator.Fan;
 import BehaviourPatterns.Mediator.Mediator;
 import BehaviourPatterns.Mediator.PowerSupplier;
+import BehaviourPatterns.Memento.Caretaker;
 import GeneratingPatterns.AbstractFactory.AbstractCarFactory;
 import GeneratingPatterns.AbstractFactory.AbstractFourDoorsFactory;
 import GeneratingPatterns.AbstractFactory.AbstractTwoDoorsFactory;
@@ -164,6 +165,32 @@ public class Main {
         commandPattern();
         iteratorPattern();
         mediatorPattern();
+        mementoPattern();
+    }
+
+    /**
+     * Хранитель використовується тоді, коли ви хочете відмінити операції
+     * без відображення внутрішньої структури Хазяїна (Originator — гра у
+     * нашому прикладі). Координація операцій здійснюється Опікуном
+     * (Caretaker — контроллер гри), який надає можливість простого
+     * збереження миттєвих станів системи без уявлення що ці стани собою
+     * являють.
+     */
+    private static void mementoPattern() {
+        System.out.println();
+        Caretaker caretaker = new Caretaker();
+
+        caretaker.save();
+        caretaker.shootThatDumbAss();
+        caretaker.save();
+        caretaker.shootThatDumbAss();
+        caretaker.shootThatDumbAss();
+        caretaker.shootThatDumbAss();
+        caretaker.shootThatDumbAss();
+        // Should return last saved state
+        System.out.println("Loaded state: ");
+        caretaker.load();
+        caretaker.shootThatDumbAss();
     }
 
     /**
