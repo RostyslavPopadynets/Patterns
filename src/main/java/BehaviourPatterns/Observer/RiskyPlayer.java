@@ -6,9 +6,9 @@ public class RiskyPlayer implements Observer {
     public void update(Subject subject) {
         BoxFight boxFight = (BoxFight) subject;
         if (boxFight.getBoxerAScore() > boxFight.getBoxerBScore()) {
-            System.out.println("RISKY PLAYER: I put on boxer B, if he win I get more!");
+            System.out.println("Risky player: I put on boxer B, if he win I get more!");
         } else {
-            System.out.println("RISKY PLAYER: I put on boxer A, if he win I get more!");
+            System.out.println("Risky player: I put on boxer A, if he win I get more!");
         }
     }
 }

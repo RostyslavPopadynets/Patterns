@@ -170,6 +170,29 @@ public class Main {
         mediatorPattern();
         mementoPattern();
         observerPattern();
+        statePattern();
+    }
+
+    /**
+     * Стан дозволяє винести логіку визначення стану об’єкту та його
+     * поведінку, характерну для цього стану, в інші класи.
+     * Стан пропонує створити окремі класи для кожного стану,
+     * в якому може перебувати контекстний об’єкт, а потім винести туди поведінки,
+     * що відповідають цим станам.
+     * Одним із суттєвих недоліків цього дизайн-патерну є розплід великої
+     * кількості класів станів.
+     */
+    private static void statePattern() {
+        System.out.println();
+        BehaviourPatterns.State.Car car = new BehaviourPatterns.State.Car();
+        car.openWindow();
+        car.openDoor();
+        car.on();
+        car.openWindow();
+        car.openDoor();
+        car.start();
+        car.openWindow();
+        car.openDoor();
     }
 
     /**
