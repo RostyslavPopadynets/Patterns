@@ -1,12 +1,8 @@
 package StructuralPatterns.Flyweight;
 
-import static com.sun.javafx.scene.control.skin.Utils.getResource;
-
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 

@@ -26,6 +26,9 @@ import BehaviourPatterns.Memento.Caretaker;
 import BehaviourPatterns.Observer.BoxFight;
 import BehaviourPatterns.Observer.ConservativePlayer;
 import BehaviourPatterns.Observer.RiskyPlayer;
+import BehaviourPatterns.Strategy.Myself;
+import BehaviourPatterns.Strategy.RainWearingStrategy;
+import BehaviourPatterns.Strategy.SunshineWearingStrategy;
 import GeneratingPatterns.AbstractFactory.AbstractCarFactory;
 import GeneratingPatterns.AbstractFactory.AbstractFourDoorsFactory;
 import GeneratingPatterns.AbstractFactory.AbstractTwoDoorsFactory;
@@ -171,6 +174,21 @@ public class Main {
         mementoPattern();
         observerPattern();
         statePattern();
+        strategyPattern();
+    }
+
+    /**
+     * Стратегія зберігає сім’ю алгоритмів і дозволяє змінювати їх незалежно
+     * та переключатися між ними.
+     */
+    private static void strategyPattern() {
+        System.out.println();
+        Myself me = new Myself();
+        me.goOutside();
+        me.changeStrategy(new RainWearingStrategy());
+        me.goOutside();
+        me.changeStrategy(new SunshineWearingStrategy());
+        me.goOutside();
     }
 
     /**
