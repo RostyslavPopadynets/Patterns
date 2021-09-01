@@ -29,6 +29,7 @@ import BehaviourPatterns.Observer.RiskyPlayer;
 import BehaviourPatterns.Strategy.Myself;
 import BehaviourPatterns.Strategy.RainWearingStrategy;
 import BehaviourPatterns.Strategy.SunshineWearingStrategy;
+import BehaviourPatterns.TemplateMethod.Network;
 import GeneratingPatterns.AbstractFactory.AbstractCarFactory;
 import GeneratingPatterns.AbstractFactory.AbstractFourDoorsFactory;
 import GeneratingPatterns.AbstractFactory.AbstractTwoDoorsFactory;
@@ -175,6 +176,19 @@ public class Main {
         observerPattern();
         statePattern();
         strategyPattern();
+        templateMethodPattern();
+    }
+
+    /**
+     * Шаблонний метод задає покроково алгоритм, а елементи алгоритму
+     * можуть бути довизначені в похідних класах.
+     * Шаблонний метод — це поведінковий патерн проектування, який визначає кістяк алгоритму,
+     * перекладаючи відповідальність за деякі його кроки на підкласи.
+     * Патерн дозволяє підкласам перевизначати кроки алгоритму, не змінюючи його загальної структури.
+     */
+    private static void templateMethodPattern() {
+        Network network = new BehaviourPatterns.TemplateMethod.Facebook("Rostyslav", "12345");
+        network.post("Hello from Template method pattern");
     }
 
     /**
