@@ -30,6 +30,13 @@ import BehaviourPatterns.Strategy.Myself;
 import BehaviourPatterns.Strategy.RainWearingStrategy;
 import BehaviourPatterns.Strategy.SunshineWearingStrategy;
 import BehaviourPatterns.TemplateMethod.Network;
+import BehaviourPatterns.Visitor.ChebyshevMetric;
+import BehaviourPatterns.Visitor.EuclidMetric;
+import BehaviourPatterns.Visitor.ManhattanMetric;
+import BehaviourPatterns.Visitor.Point;
+import BehaviourPatterns.Visitor.Point2d;
+import BehaviourPatterns.Visitor.Point3d;
+import BehaviourPatterns.Visitor.Visitor;
 import GeneratingPatterns.AbstractFactory.AbstractCarFactory;
 import GeneratingPatterns.AbstractFactory.AbstractFourDoorsFactory;
 import GeneratingPatterns.AbstractFactory.AbstractTwoDoorsFactory;
@@ -177,6 +184,34 @@ public class Main {
         statePattern();
         strategyPattern();
         templateMethodPattern();
+        visitorPattern();
+    }
+
+    /**
+     * Відвідувач (Visitor) дозволяє відділити певний алгоритм від
+     * елементів, на яких алгоритм має бути виконаний, таким чином ми
+     * можемо легко додати або ж змінити алгоритм без змін до елементів
+     * системи.
+     * Однією із переваг патерну є те, що він відоклемлює алгоритм від елементів, до
+     * яких він має бути застосований, але це одночано й недолік, оскільки інтерфейс
+     * елемента має бути досить розвиненим для нормальної роботи Відвідувача.
+     * Ще одним недоліком є порушення зв’язності системи, оскільки із
+     * використанням цього патерну прийдеться добавляти велику кількість методів в
+     * елементи, які будуть відвідуватися.
+     */
+    private static void visitorPattern() {
+        System.out.println();
+        Point point2d = new Point2d(5, 8);
+        Point point3d = new Point3d(5, 8, 12);
+        Visitor chebyshevMetric = new ChebyshevMetric();
+        Visitor euclidMetric = new EuclidMetric();
+        Visitor manhattanMetric = new ManhattanMetric();
+        System.out.println("Chebyshev metric for 2D point: " + point2d.accept(chebyshevMetric));
+        System.out.println("Euclid metric for 2D point: " + point2d.accept(euclidMetric));
+        System.out.println("Manhatta metric for 2D point: " + point2d.accept(manhattanMetric));
+        System.out.println("Chebyshev metric for 3D point: " + point3d.accept(chebyshevMetric));
+        System.out.println("Euclid metric for 3D point: " + point3d.accept(euclidMetric));
+        System.out.println("Manhatta metric for 3D point: " + point3d.accept(manhattanMetric));
     }
 
     /**
